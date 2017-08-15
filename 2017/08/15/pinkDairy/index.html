@@ -1,0 +1,625 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>微信小程序-mini日记本 | zsqio的博客</title>
+    <meta name="author" content="zsqio">
+    
+    <meta name="description" content="wechat-pinkDiary微信小程序-以粉粉日记APP为参考做的一个日记本。
+首先，开发微信小程序你需要准备好这些工具：下载微信开发者工具，附上地址：  https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html 下载好后就">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="微信小程序-mini日记本"/>
+    <meta property="og:site_name" content="Learn Forever"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Learn Forever" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Learn Forever</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="https://avatars3.githubusercontent.com/u/26322299?v=4&amp;u=e78e372d67492b31ebb8eef174e5c0782099401b&amp;s=400" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">zsqio</p>
+                        <p class="desc">Web前端开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>微信小程序-mini日记本</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-08-15T08:10:08.422Z"><a href="/2017/08/15/pinkDairy/">2017-08-15</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#wechat-pinkDiary"><span class="section table-of-contents-text">wechat-pinkDiary</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#效果预览"><span class="section table-of-contents-text">效果预览 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#页面注册"><span class="section table-of-contents-text">页面注册</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#功能实现"><span class="section table-of-contents-text">功能实现 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#具体实现"><span class="section table-of-contents-text">具体实现 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#小结"><span class="section table-of-contents-text">小结</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="wechat-pinkDiary"><a href="#wechat-pinkDiary" class="headerlink" title="wechat-pinkDiary"></a>wechat-pinkDiary</h1><p>微信小程序-以粉粉日记APP为参考做的一个日记本。</p>
+<p>首先，开发微信小程序你需要准备好这些工具：<br><br>下载微信开发者工具，附上地址： <br> <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html" target="_blank" rel="external">https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html</a> 下载好后就可以进行开发了，不过呢，如果要发布你的小程序呢，你要去申请AppId走各种流程，不过平时练练手可以选择无Appid进行开发，不过会有一些局限。具体开发详情你可以去<a href="https://mp.weixin.qq.com" target="_blank" rel="external">https://mp.weixin.qq.com</a> 这里了解。<br>在创建了一个微信小程序后，会自动生成一些基本文件： <br></p>
+<ul>
+<li>page文件夹 页面文件夹 包含你所有的页面文件,至少包含.js .wxml .wxs后缀文件，.json可选</li>
+<li>utlis文件夹 一般放置一些全局需要使用的js文件</li>
+<li>app.js 控制全局的逻辑结构</li>
+<li>app.json 配置一些全局数据，所有页面都要在此处注册</li>
+<li>app.wxml 内容显示</li>
+<li>app.wxss 全局样式<br>下面切入我们的正题： <br></li>
+</ul>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览 "></a>效果预览 <br></h2><p>  嘻嘻，先来一波gif图😜😜😜(好尴尬，动图太大，加载不出来😖）那只好来一波图片啦~ 😜 <br><br>体验动图可到<a href="https://github.com/zsqio/wechat-pinkDiary" target="_blank" rel="external">源码</a>查看🍉</p>
+<p><img src="https://segmentfault.com/img/bVQXfr?w=377&amp;h=673/view" alt="image"><br><img src="https://segmentfault.com/img/bVQXjk?w=377&amp;h=674/view" alt="image"><br><img src="https://segmentfault.com/img/bVQXfJ?w=378&amp;h=672/view" alt="image"><br><img src="https://segmentfault.com/img/bVQXf1?w=376&amp;h=671/view" alt="image"><br><img src="https://segmentfault.com/img/bVQXf7?w=378&amp;h=672/view" alt="image"> </p>
+<h2 id="页面注册"><a href="#页面注册" class="headerlink" title="页面注册"></a>页面注册</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;pages&quot;:[</div><div class="line">   &quot;pages/index/index&quot;,    //首页，也就是tabBar里“社区“对应的页面</div><div class="line">   &quot;pages/my/index&quot;,       // tabBar“我的”页面</div><div class="line">   &quot;pages/detail/index&quot;,    //首页推荐内容的详情页 </div><div class="line">   &quot;pages/new/index&quot;,        // 编辑日记页面</div><div class="line">   &quot;pages/diary/index&quot;,      //日记列表页面</div><div class="line">   &quot;pages/logs/logs&quot;</div><div class="line"> ]</div></pre></td></tr></table></figure>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现 "></a>功能实现 <br></h2><ul>
+<li>轮播图</li>
+<li>写日记</li>
+<li>话题评论</li>
+<li>带emoji的输入</li>
+<li>上传图片</li>
+<li>字体大小，颜色改变 </li>
+<li>地理定位</li>
+<li>下拉刷新</li>
+<li>tabbar切换良好交互</li>
+<li>获取用户信息</li>
+<li>动态选择日记日期</li>
+</ul>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现 "></a>具体实现 <br></h2><p>首先,在社区这一块，我用到大量数据都是用mock来模拟数据，详情可见<a href="http://www.easy-mock.com" target="_blank" rel="external">Easy Mock</a> Easy Mock是一个可视化工具，能快速生成模拟数据的服务，它能为我们提供一个数据接口url，然后使用wx.request({ url: url, …..})来发送数据请求，不得不说mock是前端人员的有力工具。<br></p>
+<ul>
+<li><p>轮播图  <br><br>轮播图是微信小程序自带的轮播图(swiper)组件 <br><br>HTML结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;swiper class=&quot;swiper_box&quot;</div><div class="line"> indicator-color=&quot;&#123;&#123;indicatorcolor&#125;&#125;&quot; </div><div class="line"> indicator-active-color=&quot;&#123;&#123;indicatoractivecolor&#125;&#125;&quot; </div><div class="line"> vertical=&quot;&#123;&#123;vertical&#125;&#125;&quot; </div><div class="line"> autoplay=&quot;&#123;&#123;autoplay&#125;&#125;&quot; </div><div class="line"> interval=&quot;&#123;&#123;interval&#125;&#125;&quot; </div><div class="line"> duration=&quot;&#123;&#123;duration&#125;&#125;&quot; </div><div class="line"> indicator-dots=&quot;indicatorDots&quot;&gt;</div><div class="line">     &lt;block wx:for=&quot;&#123;&#123;images&#125;&#125;&quot; wx:key=&quot;item&quot;&gt;</div><div class="line">       &lt;swiper-item&gt;</div><div class="line">         &lt;image src=&quot;&#123;&#123;item&#125;&#125;&quot; class=&quot;slide-image&quot;&gt;&lt;/image&gt;</div><div class="line">       &lt;/swiper-item&gt;</div><div class="line">     &lt;/block&gt;</div><div class="line">   &lt;/swiper&gt;</div></pre></td></tr></table></figure>
+<p>js配置 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Page(&#123;</div><div class="line">data: &#123;</div><div class="line">  indicatorDots:true,</div><div class="line">  vertical:false,</div><div class="line">  autoplay:true,     //自动轮播</div><div class="line">  interval:3000,     //轮播时间差为3000ms</div><div class="line">  duration:1200,</div><div class="line">  indicatorcolor:&quot;#fff&quot;,     //设置底部小圆点为白色</div><div class="line">  indicatoractivecolor:&quot;pink&quot;,   //当圆点状态为active是，呈现粉色</div><div class="line">  ......</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>tabbar切换良好交互 <br><br>这个功能实现起来比较简单，主要是将app.json文件中的tabBar里设置样式、页面路径、图片路径，用列表list来渲染,详细请参考以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  &quot;tabBar&quot;: &#123;</div><div class="line">   &quot;color&quot;:&quot;#999&quot;,</div><div class="line">   &quot;selectedColor&quot;:&quot;#ff71a8&quot;,</div><div class="line">   &quot;borderStyle&quot;:&quot;white&quot;,</div><div class="line">   &quot;list&quot;: [&#123;</div><div class="line">     &quot;pagePath&quot;: &quot;pages/index/index&quot;,</div><div class="line">     &quot;text&quot;: &quot;社区&quot;,</div><div class="line">     &quot;iconPath&quot;: &quot;images/lifeNormal.png&quot;,</div><div class="line">     &quot;selectedIconPath&quot;: &quot;images/lifeSelected.png&quot;</div><div class="line">   &#125;,</div><div class="line">   &#123;</div><div class="line">     &quot;pagePath&quot;: &quot;pages/my/index&quot;,</div><div class="line">     &quot;text&quot;: &quot;我的&quot;,</div><div class="line">     &quot;iconPath&quot;: &quot;images/myNormal.png&quot;,</div><div class="line">     &quot;selectedIconPath&quot;: &quot;images/mySelected.png&quot;</div><div class="line">   &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>写日记 <br><br>因为编辑日记和展示日记在两个不同的页面，所以两个页面之间需要传递日记的内容，这里我主要是借助wx.setLocalStorage(key:key,value:value)将需要传递的数据存放到本地缓存中，虽然我们不建议将关键信息全部存在localStorage，以防用户换设备的情况。 但是在我们没有更好的数据共享的方式前可以一试。最后我们在日记列表页面通过wx.getStorage(key)得到我们之前存储的东西，然后再页面上显示出来。在日记列表页面可以对你的日记进行删除和修改操作，删除就很简单了，直接利用wx.clearStorage()将你存储在localSroage里的数据全部清空就可以了。这里可以借助setTimeout来实现一个假的效果，修改的话，就是通过wx.navigateTo()里的url将日记的text作为参数传递给编辑页面，详情见代码：<br><br>日记列表页面代码： <br> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  //modify就是点击修改按钮触发的事件</div><div class="line">  modify: function()&#123;</div><div class="line">  console.log(&apos;aaa&apos;)</div><div class="line">  wx.navigateTo(&#123;</div><div class="line">    url:&quot;/pages/new/index?content=&quot;+this.data.content</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改页面，在onLoad()获取参数：<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onLoad:function(query) &#123;</div><div class="line">  that.setData(&#123;</div><div class="line">    content:query.content</div><div class="line">  &#125;)</div><div class="line">  .....</div></pre></td></tr></table></figure>
+<ul>
+<li>话题评论  <br><br>页面展示的话题详情和已经展示的评论是从mock里获取的数据，评论功能的实现主要是借助数组的concat()方法，将你添加的评论和原有的评论连接起来，<br>首先在data里面我们有个空的commentList来存放新发布的评论，获取评论内容等在这就不细讲，重点看一下发布评论的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">submitComment: function() &#123;</div><div class="line">  var that = this, conArr = [];</div><div class="line">   //此处延迟的原因是 在点发送时 先执行失去文本焦点 再执行的send 事件 此时获取数据不正确 故手动延迟100毫秒</div><div class="line">   setTimeout(function () &#123;</div><div class="line">     if (that.data.comment.trim().length &gt; 0) &#123;</div><div class="line">       conArr.push(&#123;</div><div class="line">         avatar:that.data.avatar,     //在onLoad(）里通过wx.getUserInfo()获取了用户信息</div><div class="line">         username:that.data.username,</div><div class="line">         time:util.formatTime(new Date()),</div><div class="line">         content:that.data.comment,    //评论的text包括表情</div><div class="line">         images:that.data.photos      //评论所带图片地址</div><div class="line">       &#125;)</div><div class="line">       that.setData(&#123;</div><div class="line">         commentList: that.data.commentList.concat(conArr),</div><div class="line">         comment: &quot;&quot;,//清空文本域值</div><div class="line">         photos:[],</div><div class="line">         isShow: false,    </div><div class="line">         photoShow:false,</div><div class="line">       &#125;)</div><div class="line">     &#125; else &#123;</div><div class="line">       that.setData(&#123;</div><div class="line">         comment: &quot;&quot;,//清空文本域值</div><div class="line">         photos:[],</div><div class="line">       &#125;)</div><div class="line">     &#125;</div><div class="line">   &#125;, 100)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>地理定位 <br><br>我在定位功能的实现中使用了腾讯地图的定位API,具体使用可参考网址详细解析<a href="http://lbs.qq.com/qqmap_wx_jssdk/index.html" target="_blank" rel="external">http://lbs.qq.com/qqmap_wx_jssdk/index.html</a> <br><br>但是有3步是必不可少的：<br>1 申请开发者密钥（key）：[申请密钥] <a href="http://lbs.qq.com/key.html" target="_blank" rel="external">http://lbs.qq.com/key.html</a><br>2 下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0<br>3 安全域名设置，需要在微信公众平台添加域名地址<a href="https://apis.map.qq.com" target="_blank" rel="external">https://apis.map.qq.com</a> 完成<br>以上3步，你就可以友好地使用Api了，首先使用wx.getLocation()获取当前用户位置的经纬度，然后通过逆地址解析获取当前的具体位置，这里就是使用腾讯位置服务平台提的reverseGeocoder接口，在逆地址解析结果中获取省份和城市信息。参考代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">getLocation: function() &#123;</div><div class="line">  let that=this;</div><div class="line">  wx.getLocation(&#123;      //首先获得经纬度</div><div class="line">    type: &apos;wgs84&apos;,</div><div class="line">    success:(res)=&gt; &#123;</div><div class="line">      var latitude = res.latitude</div><div class="line">      var longitude = res.longitude</div><div class="line">      demo.reverseGeocoder(&#123;      //然后借助腾讯位置服务提供个逆地址解析api将经纬度转换成具体的地址</div><div class="line">        location:&#123;</div><div class="line">          latitude,</div><div class="line">          longitude</div><div class="line">        &#125;,</div><div class="line">        success: function(res) &#123;</div><div class="line">          console.log(res.result)</div><div class="line">            var location=res.result.address_component.province+res.result.address_component.city</div><div class="line">            that.setData(&#123;</div><div class="line">              location,</div><div class="line">              locationStyle:&apos;background-image:url(./../../images/blue.png);color:#1296db;&apos;</div><div class="line">            &#125;);</div><div class="line">            wx.setStorage(&#123;</div><div class="line">              key:&quot;location&quot;,</div><div class="line">              data:location</div><div class="line">            &#125;)</div><div class="line"></div><div class="line">        &#125;,</div><div class="line">        fail: function(res) &#123;</div><div class="line">            console.log(res);</div><div class="line">        &#125;,</div><div class="line">        complete: function(res) &#123;</div><div class="line">            console.log(res);</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>下拉刷新评论 <br><br>这里主要是借助了微信小程序的视图容器scroll-view，可滚动区域，设置属性scroll-y=”true”,表示可沿着y轴滚动，需要注意使用竖向滚动时，需要给<scroll-view>一个固定高度，我这里是通过wx.getSystemInfo()得到windowHeight,然后将固定高度设置为和windowHeight一样。当滚动到评论底部时，会触发会触发 scrolltolower 事件，在事件对应的处理方法里我们将预先设置好的评论信息加载到页面上。这样就形成一个下拉加载的效果。参考代码:<br></scroll-view></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">//哈哈，方法命名有点粗糙~</div><div class="line">refresh:function()&#123;</div><div class="line">  console.log(&apos;bottom&apos;)</div><div class="line">  let that = this,conArr = []</div><div class="line">  if (that.data.refreshTime &lt; 3) &#123;     //refreshTime是在data里定义的一个常量，用来控制加载次数，这里最多3次</div><div class="line">    for(let i=0;i&lt;3;i++)&#123;</div><div class="line">      conArr.push(&#123;</div><div class="line">        &apos;avatar&apos;:&apos;../../images/avatar.jpg&apos;,</div><div class="line">        &apos;username&apos;:&apos;西瓜君&apos;,</div><div class="line">        &apos;content&apos;:&apos;简直66666&apos;,</div><div class="line">        &apos;time&apos;:util.formatTime(new Date())   //获取当前时间，utils文件夹下的util.js里定义了formateTime()方法，详情见源码~</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">    wx.showToast(&#123;               //显示加载提示框</div><div class="line">      title: &apos;加载中&apos;,</div><div class="line">      icon: &apos;loading&apos;,</div><div class="line">      duration: 3000</div><div class="line">    &#125;)</div><div class="line">    setTimeout(function () &#123;</div><div class="line">          that.setData(&#123;</div><div class="line">            commentList: that.data.commentList.concat(conArr)</div><div class="line">          &#125;)</div><div class="line">        &#125;,3000)</div><div class="line">  &#125; else &#123;</div><div class="line">    that.setData(&#123;</div><div class="line">      nodata:true</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">  ++that.data.refreshTime;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>上传图片 <br><br>通过wx.chooseImage(OBJECT)来从本地相册选择图片或使用相机拍照，具体参数如图：<br><br><img src="/img/bVQXgB" alt="图片描述"><br>主要代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  wx.chooseImage(&#123;</div><div class="line">   count: 1, // 默认9  表示可选择图片的数量</div><div class="line">   sizeType: [&apos;original&apos;, &apos;compressed&apos;], // 可以指定是原图还是压缩图，默认二者都有</div><div class="line">   sourceType: [&apos;album&apos;, &apos;camera&apos;], // 可以指定来源是相册还是相机，默认二者都有</div><div class="line">   success: function (res) &#123;</div><div class="line">         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片</div><div class="line">       var tempFilePaths = res.tempFilePaths; </div><div class="line">       this.setData(&#123;</div><div class="line">       photos: tempFilePaths</div><div class="line">       &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">.....</div></pre></td></tr></table></figure>
+</li>
+<li><p>带emoji输入框 <br><br><img src="/img/bVQXgw" alt="clipboard.png"> <br><br>这里首先我们需要在data里定义一个emojiChar，注意这个emojiChar是有一大串可爱表情连起来的字符串，具体可以看下面的js代码，首先我们通过split()将字符串emojiChar切割成一个表情数组emChar[],但是这些表情不是显示在表情框中的表情形式，我们需要将他们转化成上图所示的qq和微信的原始表情展示。每一个表情都有相应的字符编码，但是其实我们这里并不是使用正则来转换成实体字符，这里我们是通过image将所有的表情以图片的形式显示出来，这里的图片访问地址从别人的项目里借鉴过来的，具体见代码。完成了emoji显示，接下来的就是实现当点击emoji时，将它显示到input文本域中。但是其实这里呈现出来的是我们之前在emojiChar里定义的表情样式，通过dataSet传递所选中的表情，详情见js代码的emojichoose()方法。完成以上这些，一个可爱的小型emoji输入框就是实现啦~<br>HTML结构：<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!-- emoji表情盒子 --&gt;</div><div class="line">  &lt;view class=&quot;emoji-box &#123;&#123;isShow ? &apos;emoji-move-in&apos; : &apos;emoji-move-out&apos;&#125;&#125; &#123;&#123;isLoad ? &apos;no-emoji-move&apos; : &apos;&apos;&#125;&#125;&quot; &gt;</div><div class="line">    &lt;scroll-view scroll-y=&quot;true&quot; bindscroll=&quot;emojiScroll&quot; style=&quot;height:200px&quot;&gt;</div><div class="line">      &lt;block wx:for=&quot;&#123;&#123;emojis&#125;&#125;&quot; wx:for-item=&quot;e&quot; wx:key=&quot;&quot;&gt;</div><div class="line">        &lt;view class=&quot;emoji-cell&quot;&gt;</div><div class="line">          &lt;image class=&quot;touch-active&quot; bindtap=&quot;emojiChoose&quot; </div><div class="line">          src=&quot;http://soupu.oss-cn-shanghai.aliyuncs.com/emoji/&#123;&#123;e.emoji&#125;&#125;.png&quot; </div><div class="line">          data-emoji=&quot;&#123;&#123;e.char&#125;&#125;&quot;</div><div class="line">          data-oxf=&quot;&#123;&#123;e.emoji&#125;&#125;&quot;&gt;</div><div class="line">          &lt;/image&gt;</div><div class="line">        &lt;/view&gt;</div><div class="line">      &lt;/block&gt;</div><div class="line">    &lt;/scroll-view&gt;</div><div class="line">  &lt;/view&gt;</div></pre></td></tr></table></figure>
+<p>js控制 <br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">  Page(&#123;</div><div class="line">  data: &#123;</div><div class="line">   .......</div><div class="line">    emojiChar: &quot;☺-😋-😌-😍-😏-😜-😝-😞-😔-😪-😭-😁-😂-😃-😅-😆-👿-😒-😓-😔-😏-😖-😘-😚-😒-😡-😢-😣-😤-😢-😨-😳-😵-😷-😸-😻-😼-😽-😾-😿-🙊-🙋-🙏-✈-🚇-🚃-🚌-🍄-🍅-🍆-🍇-🍈-🍉-🍑-🍒-🍓-🐔-🐶-🐷-👦-👧-👱-👩-👰-👨-👲-👳-💃-💄-💅-💆-💇-🌹-💑-💓-💘-🚲&quot;,</div><div class="line">    //0x1f---</div><div class="line">    emoji: [</div><div class="line">      &quot;60a&quot;, &quot;60b&quot;, &quot;60c&quot;, &quot;60d&quot;, &quot;60f&quot;,</div><div class="line">      &quot;61b&quot;, &quot;61d&quot;, &quot;61e&quot;, &quot;61f&quot;,</div><div class="line">      &quot;62a&quot;, &quot;62c&quot;, &quot;62e&quot;,</div><div class="line">      &quot;602&quot;, &quot;603&quot;, &quot;605&quot;, &quot;606&quot;, &quot;608&quot;,</div><div class="line">      &quot;612&quot;, &quot;613&quot;, &quot;614&quot;, &quot;615&quot;, &quot;616&quot;, &quot;618&quot;, &quot;619&quot;, &quot;620&quot;, &quot;621&quot;, &quot;623&quot;, &quot;624&quot;, &quot;625&quot;, &quot;627&quot;, &quot;629&quot;, &quot;633&quot;, &quot;635&quot;, &quot;637&quot;,</div><div class="line">      &quot;63a&quot;, &quot;63b&quot;, &quot;63c&quot;, &quot;63d&quot;, &quot;63e&quot;, &quot;63f&quot;,</div><div class="line">      &quot;64a&quot;, &quot;64b&quot;, &quot;64f&quot;, &quot;681&quot;,</div><div class="line">      &quot;68a&quot;, &quot;68b&quot;, &quot;68c&quot;,</div><div class="line">      &quot;344&quot;, &quot;345&quot;, &quot;346&quot;, &quot;347&quot;, &quot;348&quot;, &quot;349&quot;, &quot;351&quot;, &quot;352&quot;, &quot;353&quot;,</div><div class="line">      &quot;414&quot;, &quot;415&quot;, &quot;416&quot;,</div><div class="line">      &quot;466&quot;, &quot;467&quot;, &quot;468&quot;, &quot;469&quot;, &quot;470&quot;, &quot;471&quot;, &quot;472&quot;, &quot;473&quot;,</div><div class="line">      &quot;483&quot;, &quot;484&quot;, &quot;485&quot;, &quot;486&quot;, &quot;487&quot;, &quot;490&quot;, &quot;491&quot;, &quot;493&quot;, &quot;498&quot;, &quot;6b4&quot;</div><div class="line">    ],</div><div class="line">    emojis: []    //通过qq、微信原始表情</div><div class="line">  &#125;,</div><div class="line">  onLoad: function () &#123;</div><div class="line">    var em = &#123;&#125;, that = this, emChar = that.data.emojiChar.split(&quot;-&quot;);</div><div class="line">        var emojis = []</div><div class="line">        that.data.emoji.forEach(function (v, i) &#123;</div><div class="line">          em = &#123;</div><div class="line">            char: emChar[i],</div><div class="line">            emoji: &quot;0x1f&quot; + v</div><div class="line">          &#125;;</div><div class="line">          emojis.push(em)</div><div class="line">        &#125;);</div><div class="line">           that.setData(&#123;</div><div class="line">            emojis: emojis</div><div class="line">          &#125;)</div><div class="line">    &#125;，</div><div class="line">    emojiChoose: function(e) &#123;</div><div class="line">  // console.log(e.currentTarget.dataset.emoji)</div><div class="line">  this.setData(&#123;</div><div class="line">      comment: this.data.comment + e.currentTarget.dataset.emoji</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其他功能实现在这里就不细讲，想了解，可自行参考<a href="https://github.com/zsqio/wechat-pinkDiary" target="_blank" rel="external">源码😜</a>,如果觉得对你有帮助欢迎star😁<br></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>界面交互，区分wx.navigateTo和wx.switchTab，前者是保留当前页面，跳转到应用内的某个页面（不在tabbar），后者是跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。当我们要从不在tabbar里的页面中跳转到tabbar页面时，除了选择左上角的返回键后，应该选择wx.switchTab,而不是wx.navigateTo <br></li>
+<li>每个页面都必须先注册，不然页面跳转是会出错，我们应该养成良好的习惯，先规划好需要的页面，然后再去一个个实现。<br></li>
+<li>如果需要用到本地缓存localStorage里的数据，并且及时响应变化，此时，最好使用wx.StorageSync()来获取。wx.getStorage()和wx.getStorageSync()的区别就在于，前者是异步执行，后者是同步执行。<br></li>
+</ul>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2017/08/07/vueMeitu/" rel="next" title="Vue2.0打造移动端美图官网">
+    下一篇：Vue2.0打造移动端美图官网
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/zsqio" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
