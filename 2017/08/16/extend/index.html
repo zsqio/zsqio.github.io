@@ -7,13 +7,16 @@
 
     
 
-    <title>归档：2017/8 | zsqio的博客</title>
+    <title>javascript实现继承的几种方式 | zsqio的博客</title>
     <meta name="author" content="zsqio">
+    
+    <meta name="description" content="ES5中的实现 
+概述 JavaScript(ES5)中没有像Java那样类的概念，写法跟传统的面向对象语言（比如C++和Java）差异很大，很容易让新学习这门语言的程序员感到困惑。但是我们可以通过原型链prototype来模拟类，去实现继承的相关功能。下面来看看ES5中实现继承常见的三种方法。代码">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="javascript实现继承的几种方式"/>
     <meta property="og:site_name" content="Learn Forever"/>
 
     
@@ -191,52 +194,74 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>javascript实现继承的几种方式</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2017
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2017/08/16/extend/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-16T07:47:04.607Z">2017-08-16</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                javascript实现继承的几种方式
-                            </a>
-                        
-                            <a href="/2017/08/15/pinkDairy/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-15T08:10:08.422Z">2017-08-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                微信小程序-mini日记本
-                            </a>
-                        
-                            <a href="/2017/08/07/vueMeitu/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-07T12:23:39.216Z">2017-08-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Vue2.0打造移动端美图官网
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="pink-link-context" datetime="2017-08-16T07:47:04.607Z"><a href="/2017/08/16/extend/">2017-08-16</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#ES5中的实现"><span class="section table-of-contents-text">ES5中的实现 </span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#概述"><span class="section table-of-contents-text">概述 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#代码"><span class="section table-of-contents-text">代码 </span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三种方法比较"><span class="section table-of-contents-text">三种方法比较 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#ES6中的实现"><span class="section table-of-contents-text">ES6中的实现 </span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#概述-1"><span class="section table-of-contents-text">概述 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#代码-1"><span class="section table-of-contents-text">代码 </span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="ES5中的实现"><a href="#ES5中的实现" class="headerlink" title="ES5中的实现 "></a>ES5中的实现 <br></h1><p><br><br><br></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述 "></a>概述 <br></h2><p>JavaScript(ES5)中没有像Java那样类的概念，写法跟传统的面向对象语言（比如C++和Java）差异很大，很容易让新学习这门语言的程序员感到困惑。但是我们可以通过原型链prototype来模拟类，去实现继承的相关功能。下面来看看ES5中实现继承常见的三种方法。代码如下： <br></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码 "></a>代码 <br></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * JavaScript(ES5)中实现继承的几种方法</div><div class="line"> */</div><div class="line"></div><div class="line">// 定义基类Person</div><div class="line">function Person(name, age) &#123;</div><div class="line">  this.name = name;</div><div class="line">  this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 共享数据</div><div class="line">Person.prototype.LEGS_NUM = 2;</div><div class="line"></div><div class="line">// 共享方法</div><div class="line">Person.prototype.info = function () &#123;</div><div class="line">  console.log(&apos;My name is &apos; + this.name + &apos; .I\&apos;m &apos; + this.age + &apos; years old now&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Person.prototype.walk = function () &#123;</div><div class="line">  console.log(this.name + &apos; is walking...&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// Student子类</div><div class="line">function Student(name, age, className) &#123;</div><div class="line">  // 调用父类</div><div class="line">  Person.call(this, name, age);</div><div class="line">  this.className = className;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 1 方法一：Person.prototype直接赋值给Student.prototype</div><div class="line">// Student.prototype = Person.prototype;</div><div class="line"></div><div class="line">// 2 方法二：Student.prototype为Person的实例</div><div class="line">// Student.prototype = new Person();</div><div class="line"></div><div class="line">// 3 方法三：创建一个空对象，对象的原型指向Person.prototype，赋值给Student.prototype</div><div class="line">Student.prototype = Object.create(Person.prototype);</div><div class="line"></div><div class="line">Student.prototype.constructor = Student;</div><div class="line"></div><div class="line">// 覆盖父类的info方法</div><div class="line">Student.prototype.info = function () &#123;</div><div class="line">  console.log(&apos;My name is &apos; + this.name + &apos;,I\&apos;m &apos; + this.age + &apos; years old now, and from class &apos; + this.className + &apos;.&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// Student类的共享方法</div><div class="line">Student.prototype.learn = function (subject) &#123;</div><div class="line">  console.log(this.name + &apos; is learning &apos; + subject + &apos;.&apos;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 测试,创建一个Student的实例</div><div class="line">var zsqio = new Student(&apos;Zsqio&apos;, 21, 9);</div><div class="line">zsqio.info(); // My name is Zsqio,I&apos;m 21 years old now, and from class 9.</div><div class="line">console.log(zsqio.LEGS_NUM); // 2</div><div class="line">zsqio.walk(); // zsqio is walking...</div><div class="line">zsqio.learn(&apos;JavaScript&apos;); // zsqio is learning JavaScript.</div><div class="line">console.log(zsqio.__proto__.__proto__ === Person.prototype); // true</div><div class="line">console.log(zsqio.__proto__ === Student.prototype); // true</div><div class="line">console.log(zsqio.__proto__.constructor === Student); // true</div></pre></td></tr></table></figure>
+<h1 id="三种方法比较"><a href="#三种方法比较" class="headerlink" title="三种方法比较 "></a>三种方法比较 <br></h1><p>上面代码中有三种方法实现继承，现在我们可以来分析一下这几种方法。 <br><br>1 这种方法中，Person.prototype直接赋值给Student.prototype，但是有一个很严重的问题，如果子类prototype添加新的东西的话也会改写父类。所以这种方法不推荐。 <br><br>2 第二种方法Student.prototype为Person的实例，这也是可以实现的。但是Person构造函数有参数应该传什么呢？传任何一个都是很奇怪的。所以也不推荐。 <br><br>3 第三种方法是比较理想的，创建一个空对象，对象的原型指向Person.prototype，赋值给Student.prototype。但是Object.create也有一点小瑕疵，因为它是ES5之后才支持的，不过我们可以通过模拟实现Object.create方法。代码如下： <br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if (!Object.create) &#123;</div><div class="line">  Object.prototype.create = function (proto) &#123;</div><div class="line">    function F() &#123;&#125;</div><div class="line">    F.prototype = proto;</div><div class="line">    return new F;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="ES6中的实现"><a href="#ES6中的实现" class="headerlink" title="ES6中的实现 "></a>ES6中的实现 <br></h1><p><br><br><br></p>
+<h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述 "></a>概述 <br></h2><p>ES6提供了更接近传统语言”类”的写法，引入了Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。基本上，ES6的class可以看作只是一个语法糖，它的绝大部分功能，ES5都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。下面我们用ES6的语法实现类的继承。 <br></p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码 "></a>代码 <br></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">// 基类 Person</div><div class="line">class Person &#123;</div><div class="line">  // 父类的构造方法</div><div class="line">  constructor(name, age) &#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">    // 共享变量</div><div class="line">    this.LEGS_NUM = 2;</div><div class="line">  &#125;</div><div class="line">  // 父类的info方法</div><div class="line">  info() &#123;</div><div class="line">    console.log(`My name is $&#123;this.name&#125;, I\&apos;m $&#123;this.age&#125; years old now.`);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 父类的walk方法</div><div class="line">  walk() &#123;</div><div class="line">    console.log(this.name + &apos; is walking...&apos;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子类 Student</div><div class="line">class Student extends Person &#123;</div><div class="line">  constructor(name, age, className) &#123;</div><div class="line">    // 调用基类的构造方法</div><div class="line">    super(name, age);</div><div class="line">    this.className = className;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // 覆盖父类的info方法</div><div class="line">  info() &#123;</div><div class="line">    console.log(`My name is $&#123;this.name&#125;, I\&apos;m $&#123;this.age&#125; years old, and from class $&#123;this.className&#125;.`);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 实例化一个Student的实例</div><div class="line">let stu = new Student(&apos;zsqio&apos;, 21, 9);</div><div class="line">stu.info(); // My name is zsqio, I&apos;m 21 years old, and from class 9.</div><div class="line">stu.walk(); // zsqio is walking...</div><div class="line">console.log(stu.LEGS_NUM); // 2</div><div class="line">console.log(stu instanceof Student); // true</div><div class="line">console.log(stu instanceof Person); // true</div></pre></td></tr></table></figure>
+<p>以上就是ES5和ES6实现继承的几种方式。 <br></p>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2017/08/15/pinkDairy/" rel="next" title="微信小程序-mini日记本">
+    下一篇：微信小程序-mini日记本
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
