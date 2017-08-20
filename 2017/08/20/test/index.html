@@ -7,13 +7,20 @@
 
     
 
-    <title>归档 | zsqio的博客</title>
+    <title>link和@import的区别 | zsqio的博客</title>
     <meta name="author" content="zsqio">
+    
+    <meta name="description" content="前言 页面引用css样式的方式大致有四种： 
+
+内联样式
+内嵌样式 (即行内样式)
+外链样式
+导入样式link和import都可以对css样式进行外部引用，但它们还是有区别的。link语法： 1&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/c">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="link和@import的区别"/>
     <meta property="og:site_name" content="Learn Forever"/>
 
     
@@ -159,58 +166,82 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>link和@import的区别</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2017
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2017/08/20/test/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-20T08:35:25.058Z">2017-08-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                link和@import的区别
-                            </a>
-                        
-                            <a href="/2017/08/16/extend/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-16T07:47:04.607Z">2017-08-16</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                javascript实现继承的几种方式
-                            </a>
-                        
-                            <a href="/2017/08/15/pinkDairy/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-15T08:10:08.422Z">2017-08-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                微信小程序-mini日记本
-                            </a>
-                        
-                            <a href="/2017/08/07/vueMeitu/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-08-07T12:23:39.216Z">2017-08-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Vue2.0打造移动端美图官网
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="pink-link-context" datetime="2017-08-20T08:35:25.058Z"><a href="/2017/08/20/test/">2017-08-20</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#前言"><span class="section table-of-contents-text">前言 </span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#两者的区别"><span class="section table-of-contents-text">两者的区别 </span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言 "></a>前言 <br></h1><p>页面引用css样式的方式大致有四种： <br></p>
+<ul>
+<li>内联样式</li>
+<li>内嵌样式 (即行内样式)</li>
+<li>外链样式</li>
+<li>导入样式<br>link和import都可以对css样式进行外部引用，但它们还是有区别的。<br><br>link语法： <br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css文件&quot; media=&quot;all&quot;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个代码中有一个media，是用来制作响应式网页的，media=“all” 是用于所有设备， media=“screen” 用于电脑屏幕，平板电脑、智能手机场景。<br></p>
+<p>@import语法： <br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;</div><div class="line">@import url(&quot;css文件&quot;);</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="两者的区别"><a href="#两者的区别" class="headerlink" title="两者的区别 "></a>两者的区别 <br></h1><ul>
+<li>link是XHTML标签，除了可以引用css样式外还可以定义RSS等事物，但@import是css标签，只能引用css样式。</li>
+<li>link在页面加载的同时加载，而@import是在页面内容加载完成之后加载的。</li>
+<li>link是XHTML标签，没有兼容问题，而@import是在css2.1提出来的，低版本的浏览器不支持。</li>
+<li>link支持使用javascript控制DOM去改变样式，@import不支持。</li>
+</ul>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2017/08/16/extend/" rel="next" title="javascript实现继承的几种方式">
+    下一篇：javascript实现继承的几种方式
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
